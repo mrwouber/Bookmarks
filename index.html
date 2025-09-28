@@ -105,7 +105,7 @@
     const websiteTableBody = document.getElementById('websiteTableBody');
     let rowNumber = 0;
 
-    database.ref('/notepad').on('child_added', function (snapshot) {
+    database.ref('/mrwouber').on('child_added', function (snapshot) {
       const website = snapshot.val();
       const newRow = websiteTableBody.insertRow(0);
       const cellNumber = newRow.insertCell(0);      
@@ -172,7 +172,7 @@ cellActions.appendChild(openInNewTabButton);
       const websiteName = websiteNameInput.value;
 
       if (websiteName) {
-        const newWebsiteRef = database.ref('notepad/').push();
+        const newWebsiteRef = database.ref('mrwouber/').push();
         newWebsiteRef.set({
           name: websiteName,
         });
@@ -192,7 +192,7 @@ cellActions.appendChild(openInNewTabButton);
     function editTitle(titleKey, currentName) {
       const newTitle = prompt('Enter new title:', currentName);
       if (newTitle && newTitle !== currentName) {
-        database.ref('/notepad/' + titleKey).update({
+        database.ref('/mrwouber/' + titleKey).update({
           name: newTitle
         });
       }
@@ -201,7 +201,7 @@ cellActions.appendChild(openInNewTabButton);
     function deleteTitle(titleKey, row) {
       const confirmation = confirm('Are you sure you want to delete this Title?');
       if (confirmation) {
-        database.ref('/notepad/' + titleKey).remove()
+        database.ref('/mrwouber/' + titleKey).remove()
           .then(function () {
             row.remove();
           })
